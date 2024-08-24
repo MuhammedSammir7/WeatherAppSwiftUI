@@ -28,7 +28,7 @@ struct ContentView: View {
                                endPoint: .bottomTrailing)
                     .ignoresSafeArea(.all)
                 
-                VStack {
+                VStack() {
                     
                     TextField("Enter city", text: $selectedCity)
                         .padding()
