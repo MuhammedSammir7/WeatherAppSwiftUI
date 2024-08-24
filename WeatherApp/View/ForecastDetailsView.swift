@@ -25,14 +25,13 @@ struct ForecastDetailsView: View {
                         
                     ForEach(filteredHours, id: \.time) { hour in
                         HStack(spacing: 50){
+                            
                             Text("\(formatTime(hour.time))") .font(.system(size: 40, weight: .bold))
-                                .foregroundColor(.white)
-                            Image(systemName: "cloud.sun.fill")
-                                .resizable()
-                                .frame(width: 50, height: 50)
-                                .foregroundColor(.yellow)
+                                .foregroundColor(isNight ? .white : .black)
+                            AsyncImage(url: URL(string:"https:\(hour.condition.icon)"))
+                                .frame(width: 30, height: 30).scaledToFill()
                             Text("\(String(format: "%.0f",hour.temp_c))") .font(.system(size: 40, weight: .bold))
-                                .foregroundColor(.white)
+                                .foregroundColor(isNight ? .white : .black)
                         }
                     }
                     

@@ -13,7 +13,7 @@ struct WeatherAppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(isNight: false)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

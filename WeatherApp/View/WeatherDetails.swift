@@ -10,7 +10,7 @@ import SwiftUI
 struct WeatherDetails: View {
     
     var weatherResponse : WeatherResponse?
-    @State var isNight: Bool = false
+    @Binding var isNight: Bool
     
     var body: some View {
         ZStack{
@@ -44,12 +44,8 @@ struct WeatherDetails: View {
                         
                             Text("H:\(String(format: "%.0f",weather.forecast.forecastday[0].day.mintemp_c))° L:\(String(format: "%.0f",weather.forecast.forecastday[0].day.mintemp_c))°")
                             .foregroundColor(isNight ? .white : .black)
-//                        AsyncImage(url: URL(string: weather.current.condition.icon))
-//                            .frame(width: 30, height: 30)
-                        Image(systemName: "cloud.sun.fill")
-                               .resizable()
-                               .frame(width: 50, height: 50)
-                               .foregroundColor(.yellow)
+                        AsyncImage(url: URL(string:"https:\(weather.current.condition.icon)"))
+                            .frame(width: 30, height: 30).scaledToFill()
                     }.padding(.top,0)
                     
                         VStack(spacing: 0) {
@@ -61,12 +57,9 @@ struct WeatherDetails: View {
                                 let forecastDay = weather.forecast.forecastday[0]
                                 NavigationLink(destination: ForecastDetailsView(isNight: isNight, forecastDay:forecastDay)){
                                 Text("Today").foregroundColor(isNight ? .white : .black)
-//                                AsyncImage(url: URL(string: weather.current.condition.icon))
-//                                    .frame(width: 30, height: 30).scaledToFill()
-                                Image(systemName: "cloud.sun.fill")
-                                       .resizable()
-                                       .frame(width: 30, height: 30)
-                                       .foregroundColor(.yellow)
+                                AsyncImage(url: URL(string:"https:\(weather.current.condition.icon)"))
+                                    .frame(width: 30, height: 30).scaledToFill()
+
                                 Text("\(String(format: "%.1f",forecastDay.day.mintemp_c))° - \(String(format: "%.1f",forecastDay.day.maxtemp_c))°").foregroundColor(isNight ? .white : .black)
                                 }
                                                
@@ -76,11 +69,9 @@ struct WeatherDetails: View {
                                 let forecastDay = weather.forecast.forecastday[1]
                                 NavigationLink(destination: ForecastDetailsView(isNight: isNight, forecastDay:forecastDay)){
                                     Text("\(forecastDay.date)").foregroundColor(isNight ? .white : .black)
-                                    //                                AsyncImage(url: URL(string: weather.forecast.forecastday[1].day.condition.icon)).frame(width: 30, height: 30).scaledToFit()
-                                    Image(systemName: "cloud.sun.fill")
-                                        .resizable()
-                                        .frame(width: 30, height: 30)
-                                        .foregroundColor(.yellow)
+                                    AsyncImage(url: URL(string:"https:\(weather.current.condition.icon)"))
+                                        .frame(width: 30, height: 30).scaledToFill()
+                                    
                                     Text("\(String(format: "%.1f",forecastDay.day.mintemp_c))° - \(String(format: "%.1f",forecastDay.day.maxtemp_c))°").foregroundColor(isNight ? .white : .black)
                                 }
                             }
@@ -90,11 +81,8 @@ struct WeatherDetails: View {
                                 NavigationLink(destination: ForecastDetailsView(isNight: isNight, forecastDay:forecastDay)){
                                     Text("\(forecastDay.date)").foregroundColor(isNight ? .white : .black)
                                     
-                                    //                                AsyncImage(url: URL(string: weather.forecast.forecastday[2].day.condition.icon)).frame(width: 30, height: 30)
-                                    Image(systemName: "cloud.sun.fill")
-                                        .resizable()
-                                        .frame(width: 30, height: 30)
-                                        .foregroundColor(.yellow)
+                                    AsyncImage(url: URL(string:"https:\(weather.current.condition.icon)"))
+                                        .frame(width: 30, height: 30).scaledToFill()
                                     Text("\(String(format: "%.1f",forecastDay.day.mintemp_c))° - \(String(format: "%.1f",forecastDay.day.maxtemp_c))°").foregroundColor(isNight ? .white : .black)
                                 }
                             }
@@ -150,6 +138,6 @@ struct WeatherDetails: View {
 
 struct WeatherDetails_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherDetails()
+        WeatherDetails(weatherResponse: nil, isNight: .constant(false))
     }
 }
