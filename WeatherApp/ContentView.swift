@@ -41,9 +41,7 @@ struct ContentView: View {
                     Button(action: {
                         // Set city and navigate immediately
                         viewModel.city = selectedCity
-                        if viewModel.weatherResponse?.current.last_updated != nil {
-                            navigateToDetail = true
-                        }
+                        navigateToDetail = true
                         
                         viewModel.getWeather()
                         
@@ -61,7 +59,7 @@ struct ContentView: View {
 
                             // NavigationLink for navigation to details view
                             NavigationLink(
-                                destination: WeatherDetails(weatherResponse: viewModel.weatherResponse, isNight: $isNight),
+                                destination: WeatherDetails(viewModel: WeatherDetailsViewModel(weatherResponse: viewModel.weatherResponse)),
                                     isActive: $navigateToDetail
                                     ) {
                                         EmptyView()
