@@ -14,7 +14,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
     @ObservedObject var viewModel = WeatherViewModel()
     @State private var selectedCity: String = ""
     @State private var navigateToDetail = false
@@ -29,7 +29,7 @@ struct ContentView: View {
                                endPoint: .bottomTrailing)
                     .ignoresSafeArea(.all)
                 
-                VStack() {
+                VStack(spacing: 30) {
                     
                     TextField("Enter city", text: $selectedCity)
                         .padding()
@@ -45,16 +45,17 @@ struct ContentView: View {
                         
                         viewModel.getWeather()
                         
-                        }) {
+                    }) {
                             
                             Text("Get Weather")
                             .font(.headline)
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                             .padding()
                             .frame(maxWidth: .infinity)
-                            .background(Color.blue)
+                            .background(LinearGradient(gradient: Gradient(colors: [.blue, .white]),startPoint: .topLeading,
+                                                             endPoint: .bottomTrailing))
                             .cornerRadius(10)
-                            }
+                    }
                                 .padding(.horizontal)
 
                             // NavigationLink for navigation to details view
@@ -90,8 +91,8 @@ struct ContentView: View {
         }
                     }
 
-struct ContentView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(isNight: false) // Providing an initial value for isNight
+        HomeView(isNight: false) // Providing an initial value for isNight
     }
 }

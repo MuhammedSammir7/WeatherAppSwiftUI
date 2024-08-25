@@ -11,7 +11,7 @@ class WeatherViewModel: ObservableObject {
     @Published var weatherResponse: WeatherResponse?
     @Published var city: String?
     
-    var network = NetworkManager()
+    var network : NetworkManagerProtocol = NetworkManager()
     
     // This binding will be used in SwiftUI for automatic updates
     //var bindResultToViewController: (() -> Void) = {}

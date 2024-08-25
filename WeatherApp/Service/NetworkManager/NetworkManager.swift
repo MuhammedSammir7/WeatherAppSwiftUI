@@ -7,9 +7,9 @@
 
 import Foundation
 
-class NetworkManager {
+class NetworkManager: NetworkManagerProtocol {
     
-    let urlManager = URLManager()
+    let urlManager : UrlManagerProtocol = URLManager()
     
     func getWeatherData<T: Decodable>(city: String, completion: @escaping (Result<T, Error>) -> Void) {
         guard let url = urlManager.setUrl(city: city) else {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class URLManager{
+class URLManager: UrlManagerProtocol{
     private let apiKey = "3388601226fe4cd3b15195917242208"
     
     func setUrl(city: String) -> URL?{

@@ -28,10 +28,12 @@ struct ForecastDetailsView: View {
                         HStack(spacing: 50){
                             
                             Text("\(viewModel.formatTime(hour.time))") .font(.system(size: 40, weight: .bold))
+                                .frame(width: 120)
                                 .foregroundColor(viewModel.isNight ? .white : .black)
                             AsyncImage(url: URL(string:"https:\(hour.condition.icon)"))
                                 .frame(width: 30, height: 30).scaledToFill()
                             Text("\(String(format: "%.0f",hour.temp_c))") .font(.system(size: 40, weight: .bold))
+                                .frame(width: 70)
                                 .foregroundColor(viewModel.isNight ? .white : .black)
                         
                     }
