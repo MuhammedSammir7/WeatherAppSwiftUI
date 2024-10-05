@@ -89,7 +89,7 @@ struct WeatherDetails: View {
                                 }
                             }
                         }
-                        VStack(spacing: 60){
+
                             HStack(spacing: 50){
                                 VStack(spacing: 10){
                                     Text("VISIBILTY").foregroundColor(viewModel.isNight ? .white : .black)
@@ -114,7 +114,7 @@ struct WeatherDetails: View {
                         }
                         
                     }
-                }
+                
             
             }
         .onAppear{
